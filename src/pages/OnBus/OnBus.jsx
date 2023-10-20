@@ -4,9 +4,13 @@ import { useState, useEffect } from "react";
 import * as mqtt from "mqtt";
 import Card from "../../components/Card/Card";
 
+// This is the on bus page component
 const OnBus = () => {
-  const [receivedMessage, setReceivedMessage] = useState(""); // State to store received messages
 
+  // State to store received messages
+  const [receivedMessage, setReceivedMessage] = useState("");
+
+  // Using useEffect hook to subscribe to the MQTT topic
   useEffect(() => {
     const client = mqtt.connect("ws://broker.hivemq.com:8000/mqtt");
     const studentsTopic = "chitkara-university/school-bus-monitoring-system/students";
@@ -66,6 +70,7 @@ const OnBus = () => {
 
   const [displayStudents, setDisplayStudents] = useState(["empty", "empty"]);
 
+  // Update the state with the received message
   useEffect(() => {
     const studentIds = receivedMessage.split(","); // Split the message into an array of student IDs
     setDisplayStudents(studentIds);
