@@ -5,14 +5,21 @@ import { sendEmailVerification } from "firebase/auth";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
+// This is the verify email page component
 function VerifyEmail() {
-  const { currentUser } = useAuthValue();
-  const [buttonDisabled, setButtonDisabled] = useState(false);
-  const [time, setTime] = useState(60);
-  const { timeActive, setTimeActive } = useAuthValue();
 
+  // Use the useAuthValue hook to get the current user
+  const { currentUser } = useAuthValue();
+  // Use the useState hook to store the button disabled state
+  const [buttonDisabled, setButtonDisabled] = useState(false);
+  // Use the useState hook to store the time
+  const [time, setTime] = useState(60);
+  // Use the useState hook to store the time active
+  const { timeActive, setTimeActive } = useAuthValue();
+  // Use the useNavigate hook to navigate to the login page
   const history = useNavigate();
 
+  // Use the useEffect hook to send the email verification
   useEffect(() => {
     const interval = setInterval(() => {
       currentUser
@@ -20,15 +27,18 @@ function VerifyEmail() {
         .then(() => {
           if (currentUser?.emailVerified) {
             clearInterval(interval);
+            // Redirect to Home Page
             history("/");
           }
         })
         .catch((err) => {
+          // Show Alert Message
           alert(err.message);
         }, 1000);
     }, [history, currentUser]);
   });
 
+  // Use the useEffect hook to set the time
   useEffect(() => {
     let interval = null;
     if (timeActive && time !== 0) {
@@ -44,6 +54,7 @@ function VerifyEmail() {
     // eslint-disable-next-line
   }, [timeActive, time]);
 
+  // Use the resend sendEmailVerification function
   const resendEmailVerification = () => {
     setButtonDisabled(true);
     sendEmailVerification(auth.currentUser)
