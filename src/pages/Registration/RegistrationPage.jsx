@@ -9,24 +9,30 @@ import { auth } from "../../firebase";
 import { useAuthValue } from "../../context/AuthContext";
 import Layout from "../../components/Layout/Layout";
 
+// This is the register page component
 function Register() {
+
+  // Using useState hook to store the email and password -> Login -> Verification Email
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
-
   const navigate = useNavigate();
   const { setTimeActive } = useAuthValue();
 
+  // Arrow Function to register
   const register = (e) => {
     e.preventDefault();
     setError("");
     if (validatePassword()) {
+
       // Create a new user with email and password using firebase
       createUserWithEmailAndPassword(auth, email, password)
         .then(() => {
           sendEmailVerification(auth.currentUser).then(() => {
             setTimeActive(true);
+
+            // Redirect to Verification Page
             navigate("/verify-email");
           });
         })
@@ -37,6 +43,7 @@ function Register() {
     setConfirmPassword("");
   };
 
+  // Arrow Function to validate password
   const validatePassword = () => {
     let isValid = true;
     if (password !== "" && confirmPassword !== "") {
