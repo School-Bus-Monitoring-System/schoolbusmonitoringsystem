@@ -10,12 +10,17 @@ import { useNavigate } from "react-router-dom";
 import { useAuthValue } from "../../context/AuthContext";
 import Layout from "../../components/Layout/Layout";
 
+// This is the login page component.
 function Login() {
+
+  // Using useState hook to store the email and password -> Login -> Verification Email
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const { setTimeActive } = useAuthValue();
   const history = useNavigate();
+
+  // Arrow Function to login
   const login = (e) => {
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
@@ -24,20 +29,27 @@ function Login() {
           sendEmailVerification(auth.currentUser)
             .then(() => {
               setTimeActive(true);
+
+              // Redirect to Verify Email
               history.push("/verify-email");
             })
             .catch((err) => alert(err.message));
         } else {
+
+          // Redirect to Home Page
           history.push("/");
         }
       })
       .catch((err) => setError(err.message));
   };
 
+  // Arrow Function to login with Google
   const signInWithGoogle = async () => {
     try {
       await signInWithPopup(auth, googleProvider)
     } catch (err) {
+
+      // Print error message on console -> logs
       console.error(err);
     }
   };
