@@ -103,7 +103,7 @@ const MainView = () => {
               Students On Bus
             </button>
           </Link>
-          <Link to={"/testing"}>
+          <Link to={"/viewlive"}>
             <button className="btn btn-neutral m-5 rounded-3xl">
               View Live
             </button>
