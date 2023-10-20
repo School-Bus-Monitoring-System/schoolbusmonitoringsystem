@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import * as mqtt from "mqtt";
 import Map from "../../components/Map/Map";
 
-const Testing = () => {
+const ViewLive = () => {
   const [receivedMessages, setReceivedMessages] = useState([]); // State to store received messages
   const [liveImage, setliveImage] = useState("");
   const [humidity, setHumidity] = useState("");
@@ -228,4 +228,4 @@ const Testing = () => {
   );
 };
 
-export default Testing;
+export default ViewLive;

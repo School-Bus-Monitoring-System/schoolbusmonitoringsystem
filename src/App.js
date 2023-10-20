@@ -9,7 +9,7 @@ import { useEffect } from "react";
 import { auth } from "./firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import HomePage from "./pages/Home/HomePage";
-import Testing from "./pages/Testing/Testing";
+import ViewLive from "./pages/ViewLive/ViewLive";
 import OnBus from "./pages/OnBus/OnBus";
 
 function App() {
@@ -29,7 +29,7 @@ function App() {
           <Route exact path="/login" element={<Login/>} />
           <Route exact path="/register" element={<Register/>} />
           <Route exact path="/verify-email" element={<VerifyEmail/>} />
-          <Route exact path="/testing" element={<Testing/>}/>
+          <Route exact path="/viewlive" element={<ViewLive/>}/>
           <Route exact path="/onbus" element={<OnBus/>}/>
         </Routes>
       </AuthProvider>
