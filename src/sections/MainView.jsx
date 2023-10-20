@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { auth } from "../firebase";
 import { Link } from "react-router-dom";
 
-const Gallery = () => {
+const MainView = () => {
   const [clock, setClock] = useState(0);
 
   useEffect(() => {
@@ -177,4 +177,4 @@ const Gallery = () => {
   );
 };
 
-export default Gallery;
+export default MainView

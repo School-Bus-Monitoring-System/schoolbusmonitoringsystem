@@ -1,12 +1,12 @@
 import React from "react";
 import Layout from "../../components/Layout/Layout";
-import Gallery from "../../sections/Gallery";
+import MainView from "../../sections/MainView";
 import CookieConsent from "react-cookie-consent";
 
 const HomePage = () => {
   return (
     <Layout>
-      <Gallery />
+      <MainView />
       <CookieConsent
         location="bottom"
         buttonText="Accept"
